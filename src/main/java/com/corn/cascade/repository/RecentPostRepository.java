@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RecentPostRepository extends JpaRepository<Post, Long> {
+public interface RecentPostRepository extends JpaRepository<Post, Long>, PostCustomRepository<Post> {
 
     Page<Post> findByTitleContains(String title, Pageable pageable); // 이름을 분석하여 쿼리를 만들어준다.
 }

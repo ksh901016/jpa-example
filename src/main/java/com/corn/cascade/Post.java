@@ -1,6 +1,7 @@
 package com.corn.cascade;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,15 @@ public class Post {
 
     @Id @GeneratedValue
     private Long id;
+
     private String title;
+
+    @Lob
+    private String content;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Comment> comments = new HashSet<>();
 
@@ -39,5 +48,21 @@ public class Post {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }
